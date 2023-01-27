@@ -1,0 +1,47 @@
+<h2 mat-dialog-title align="center">Supprimer un nouveau plan repas</h2>
+<mat-divider></mat-divider>
+<br/>
+<div mat-dialog-content>
+    <form [formGroup]='firstFormGroup' align="center">
+        <ng-template matStepLabel> Entrez la catégorie du plan repas</ng-template>
+        <mat-form-field appearance="fill">
+            <mat-label>Numéro du plan repas</mat-label>
+            <input [(ngModel)]="numeroplan" maxlength="4" matInput formControlName="zerothCtrl">
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Catégorie</mat-label>
+            <input [(ngModel)]="categorie" maxlength="4" matInput formControlName="firstCtrl">
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Fréquence (par semaine)</mat-label>
+            <input [(ngModel)]="frequence" maxlength="4" matInput formControlName="secondCtrl">
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre de personnes</mat-label>
+            <input [(ngModel)]="nbrpersonnes" maxlength="4" matInput formControlName="thirdCtrl">
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre de calories (en kcal)</mat-label>
+            <input [(ngModel)]="nbrcalories" maxlength="4" matInput placeholder="127" formControlName="fourthCtrl">
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Prix (en $)</mat-label>
+            <input [(ngModel)]="prix" maxlength="4" matInput placeholder="60" formControlName="fifthCtrl">
+
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Fournisseur</mat-label>
+            <input [(ngModel)]="numerofournisseur" maxlength="4" matInput formControlName="sixthCtrl">
+        </mat-form-field>
+    </form>
+    <div align="center">
+        <button mat-button mat-dialog-close color="primary" *ngIf="categorie && frequence && nbrpersonnes && nbrcalories && prix && numerofournisseur" (click)="this.deletePlanrepas()">Valider la suppression du plan repas !</button>
+        <button mat-button mat-dialog-close color="primary">Annuler <mat-icon>clear</mat-icon></button>
+    </div>
+</div>

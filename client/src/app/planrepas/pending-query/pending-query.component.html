@@ -1,0 +1,51 @@
+<h2 *ngIf="!data.update && !data.delete" mat-dialog-title align="center">Résultat de votre insertion</h2>
+<h2 *ngIf="data.update && !data.delete" mat-dialog-title align="center">Résultat de votre modification</h2>
+<h2 *ngIf="!data.update && data.delete" mat-dialog-title align="center">Résultat de votre suppression</h2>
+
+<div align='center' *ngIf="data.pending">
+    <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!data.update && !data.delete" align="center">
+    <div *ngIf="!data.pending && !data.success">
+        <p class="no-content">
+            Erreur dans l'insertion du nouveau plan repas.<br/>
+            Il est possible que ce plan repas existe déjà au sein de la base de données.
+        </p>
+    </div>
+    <div *ngIf="!data.pending && data.success">
+        <p class="no-content">
+          Insertion réussie !<br/>
+        </p>
+      </div>
+    <button mat-button mat-dialog-close color="primary" (click)="this.refresh()">OK</button>
+</div>
+
+<div *ngIf="data.update && !data.delete" align="center">
+    <div *ngIf="!data.pending && !data.success">
+        <p class="no-content">
+            Erreur dans la modification du plan repas.<br/>
+            Veuillez vérifier les clés primaires.
+        </p>
+    </div>
+    <div *ngIf="!data.pending && data.success">
+        <p class="no-content">
+          Modification réussie !<br/>
+        </p>
+      </div>
+    <button mat-button mat-dialog-close color="primary" (click)="this.refresh()">OK</button>
+</div>
+
+<div *ngIf="!data.update && data.delete" align="center">
+  <div *ngIf="!data.pending && !data.success">
+      <p class="no-content">
+          Erreur dans la suppression du plan repas.<br/>
+          Veuillez vérifier que le plan n'ait pas été déjà supprimé.
+      </p>
+  </div>
+  <div *ngIf="!data.pending && data.success">
+      <p class="no-content">
+        Suppression réussie !<br/>
+      </p>
+    </div>
+  <button mat-button mat-dialog-close color="primary" (click)="this.refresh()">OK</button>
+</div>

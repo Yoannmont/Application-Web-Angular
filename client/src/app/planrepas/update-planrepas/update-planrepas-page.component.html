@@ -1,0 +1,36 @@
+<div id="planrepas">
+    <h1>Modifier des plans repas</h1>
+  
+    <div class="divider"></div>
+  
+    <table id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+      <thead class="header">
+        <th class="contentCell">Numéro de plan repas</th>
+        <th class="contentCell">Catégorie</th>
+        <th class="contentCell">Fréquence</th>
+        <th class="contentCell">Nombre de personnes</th>
+        <th class="contentCell">Calories</th>
+        <th class="contentCell">Prix</th>
+        <th class="contentCell">Fournisseur</th>
+        <th class="contentCell">Modifier</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of plansrepas; let i = index">
+          <td class="contentCell">{{ plan.numeroplan }}</td>
+          <td class="contentCell">{{ plan.categorie}}</td>
+          <td class="contentCell">{{ plan.frequence }} par semaine</td>
+          <td class="contentCell">{{ plan.nbrpersonnes }} personnes</td>
+          <td class="contentCell">{{ plan.nbrcalories}} kcal</td>
+          <td class="contentCell">{{ plan.prix }} $</td>
+          <td class="contentCell">{{ plan.numerofournisseur }} : {{fournisseurs[plan.numerofournisseur-1].nomfournisseur}}</td>
+          <td class="actionCell">
+          <button mat-raised-button class="circle-outline" (click)="openUpdateDialog(plan)">
+            <mat-icon class="circle-inline">edit</mat-icon>
+          </button></td>
+        
+        </tr>
+  
+      </tbody>
+    </table>
+</div>
+>

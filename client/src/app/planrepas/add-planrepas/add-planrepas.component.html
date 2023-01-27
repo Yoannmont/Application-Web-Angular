@@ -1,0 +1,58 @@
+<h2 mat-dialog-title align="center">Ajouter un nouveau plan repas</h2>
+<mat-divider></mat-divider>
+<br/>
+<div mat-dialog-content>
+    <form [formGroup]='firstFormGroup' align="center">
+        <ng-template matStepLabel> Entrez la catégorie du plan repas</ng-template>
+        <mat-form-field appearance="fill">
+            <mat-label>Catégorie</mat-label>
+            <mat-select [(ngModel)]="categorie" formControlName="firstCtrl" required>
+                <mat-option *ngFor="let nomcategorie of categorielist" [selected]="nomcategorie.categorie === categorie" [value]="nomcategorie.categorie">
+                    {{nomcategorie.categorie}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Fréquence (par semaine)</mat-label>
+            <mat-select [(ngModel)]="frequence" formControlName="secondCtrl" required>
+                <mat-option *ngFor="let in of counter(7) ;let i=index" [selected]="i+1 === frequence" [value]="i+1">
+                    {{i+1}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre de personnes</mat-label>
+            <mat-select [(ngModel)]="nbrpersonnes" formControlName="thirdCtrl" required>
+                <mat-option *ngFor="let in of counter(20) ;let i=index" [selected]="i+1 === nbrpersonnes" [value]="i+1">
+                    {{i+1}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre de calories (en kcal)</mat-label>
+            <input [(ngModel)]="nbrcalories" maxlength="4" matInput placeholder="127" formControlName="fourthCtrl" required>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Prix (en $)</mat-label>
+            <input [(ngModel)]="prix" maxlength="4" matInput placeholder="60" formControlName="fifthCtrl" required>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Fournisseur</mat-label>
+            <mat-select [(ngModel)]="numerofournisseur" formControlName="sixthCtrl" required>
+                <mat-option *ngFor="let fournisseur of fournisseurs" [selected]="fournisseur.numerofournisseur === numerofournisseur" [value]="fournisseur.numerofournisseur">
+                    {{fournisseur.numerofournisseur}} : {{fournisseur.nomfournisseur}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+    <div align="center">
+        <button mat-button mat-dialog-close color="primary" *ngIf="categorie && frequence && nbrpersonnes && nbrcalories && prix && numerofournisseur" (click)="this.addPlanrepas()">Valider l'ajout du plan repas !</button>
+        <button mat-button mat-dialog-close color="primary">Annuler <mat-icon>clear</mat-icon></button>
+        <button mat-button (click)="this.randomizer()" color="primary">Randomiser  <mat-icon>cached</mat-icon></button>
+    </div>
+</div>
